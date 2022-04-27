@@ -1,3 +1,4 @@
+
 from django.db import models
 from phone_field import PhoneField
 from django.contrib.auth.models import AbstractUser
@@ -32,4 +33,18 @@ class Client(models.Model):
 
     def __str__(self):
         return self.username
+
+
+
+class Storage(models.Model):
+    descrption =models.TextField(max_length=200)
+    size =models.IntegerField(blank=True,default='0')
+    price =models.FloatField(default=0, blank=True)
+    image = models.ImageField(upload_to='images/')
+    status =models.CharField(max_length=40)
+    categories =models.CharField(max_length=50)
+    
+    def __str__(self):
+        return self.size
+
     
