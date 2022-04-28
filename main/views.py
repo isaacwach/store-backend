@@ -99,7 +99,8 @@ class CustomAuthToken(ObtainAuthToken):
         return Response({
              'token': token.key,
              'user_id': user.pk,
-             'is_admin':user.is_admin
+             'is_admin':user.is_admin,
+             'is_client':user.is_client
         })
     
 class Logout(APIView):
