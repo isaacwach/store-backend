@@ -56,7 +56,7 @@ INSTALLED_APPS = [
 
     
     'bootstrap4',
-    'cloudinary'
+    'cloudinary',
 
     'corsheaders',
     'rest_framework',
@@ -78,6 +78,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'store.urls'
 AUTH_USER_MODEL ='main.User'
+AUTH_TRANSPORT_MODEL ='main.Transport'
+
 ACCOUNT_UNIQUE_EMAIL =True
 
 TEMPLATES = [
@@ -120,7 +122,7 @@ DATABASES = {
 
         'NAME':'store',
         'USER':'moringa',
-        'PASSWORD':'sieva'
+        'PASSWORD':'Felixkurgat5'
     }
 }
 
