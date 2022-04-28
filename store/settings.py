@@ -60,6 +60,8 @@ ROOT_URLCONF = 'store.urls'
 AUTH_USER_MODEL ='main.User'
 ACCOUNT_UNIQUE_EMAIL =True
 
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

@@ -11,7 +11,8 @@ from django.dispatch import receiver
 
 class User(AbstractUser):
     is_admin =models.BooleanField(default=False)
-    is_client =models.BooleanField(default=False)  
+    is_client =models.BooleanField(default=False)
+    
 
     def __str__(self):
         return self.username

@@ -6,3 +6,12 @@ class IsAdminOrReadOnly(BasePermission):
             return True
         else:
             return request.user.is_staff
+
+class isAdminUser(BasePermission):
+    def has_permission(self, request, view):
+
+        return bool(request.user and request.user.is_admin)
+class isClientUser(BasePermission):
+    def has_permission(self, request, view):
+
+        return bool(request.user and request.user.is_client)
