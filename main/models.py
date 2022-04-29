@@ -1,6 +1,7 @@
 
+
 from django.contrib.auth.models import User
-from cloudinary.models import CloudinaryField
+
 
 from django.db import models
 from phone_field import PhoneField
@@ -20,16 +21,22 @@ class Client(models.Model):
 
     def __str__(self):
         return self.username
+
 class Storage(models.Model):
-    descrption =models.TextField(max_length=200)
+
+    description =models.TextField(max_length=200)
     size =models.IntegerField(blank=True,default='0')
     price =models.FloatField(default=0, blank=True)
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='images/',default='images/image1.jpg')
+
     status =models.CharField(max_length=40)
     categories =models.CharField(max_length=50)
     
     def __str__(self):
-        return self.size
+
+        return self.categories
+      
+
 class Transport(models.Model):
     destination = models.CharField(max_length=100)
     delivery_fee = models.IntegerField()
@@ -47,6 +54,7 @@ class Transport(models.Model):
 
     def __str__(self):
      return self.client_name
+
 class Booking(models.Model):
     types_of_goods = models.CharField(max_length=100)
     start_date = models.DateTimeField(auto_now_add=True)
@@ -65,7 +73,8 @@ class Booking(models.Model):
 
 class User(AbstractUser):
     is_admin =models.BooleanField(default=False)
-    is_client =models.BooleanField(default=False)  
+    is_client =models.BooleanField(default=False)
+    
 
     def __str__(self):
         return self.username
@@ -78,9 +87,8 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 
 class Admin(models.Model):
     user =models.OneToOneField(User, on_delete=models.CASCADE,related_name='employee')
-    username =models.CharField(max_length=50)
-    email =models.EmailField(max_length=100)
-    password =models.CharField(max_length=50)
+    username =models.CharField(max_length=50,blank=True,null=True)
+    email =models.EmailField(max_length=100,blank=True,null=True)
 
     def __str__(self):
         return self.username
@@ -90,7 +98,4 @@ class Admin(models.Model):
 
 
 
-
-
-    
 

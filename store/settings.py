@@ -83,6 +83,8 @@ AUTH_TRANSPORT_MODEL ='main.Transport'
 
 ACCOUNT_UNIQUE_EMAIL =True
 
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
