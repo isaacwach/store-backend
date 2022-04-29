@@ -12,9 +12,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
-
-import django_heroku
+import django_on_heroku
 import dj_database_url
+<<<<<<< HEAD
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
@@ -25,13 +25,25 @@ cloudinary.config(
   api_secret = "EwIXx2yhzxXTdIXClBjMCbp1CPg" ,
   secure = True
 )
+=======
+from decouple import config,Csv
+>>>>>>> models
 
+
+
+# from decouple import config,Csv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+<<<<<<< HEAD
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MODE=config("MODE", default="dev")
 
 # BASE_DIR = Path(__file__).resolve().parent.parent
+=======
+# BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MODE=config("MODE", default="dev")
+>>>>>>> models
 
 
 # Quick-start development settings - unsuitable for production
@@ -39,6 +51,7 @@ MODE=config("MODE", default="dev")
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
+<<<<<<< HEAD
 # SECRET_KEY = 'django-insecure-px=#fjl0jtrpw&kbx5iqdqu5_2f70q3+*#g0hd#m5(@!=kvg_5'
 
 
@@ -47,6 +60,12 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 # ALLOWED_HOSTS = []
+=======
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = config('DEBUG', default=False, cast=bool)
+
+>>>>>>> models
 
 
 # Application definition
@@ -121,6 +140,7 @@ REST_FRAMEWORK = {
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+<<<<<<< HEAD
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
@@ -137,6 +157,8 @@ REST_FRAMEWORK = {
 # }
 
 # development
+=======
+>>>>>>> models
 if config('MODE')=="dev":
    DATABASES = {
        'default': {
@@ -195,11 +217,21 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
+<<<<<<< HEAD
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = 'static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+=======
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+>>>>>>> models
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -207,4 +239,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+<<<<<<< HEAD
 django_heroku.settings(locals())
+=======
+django_on_heroku.settings(locals())
+>>>>>>> models
