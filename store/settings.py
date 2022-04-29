@@ -18,7 +18,7 @@ import dj_database_url
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
-# from decouple import config,Csv
+from decouple import config,Csv
 cloudinary.config( 
   cloud_name = "drlarkhla", 
   api_key = "361286985462635", 
