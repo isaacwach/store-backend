@@ -13,6 +13,20 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 
+import django_heroku
+import dj_database_url
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+# from decouple import config,Csv
+cloudinary.config( 
+  cloud_name = "drlarkhla", 
+  api_key = "361286985462635", 
+  api_secret = "EwIXx2yhzxXTdIXClBjMCbp1CPg" ,
+  secure = True
+)
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,9 +53,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    
+    'bootstrap4',
+    'cloudinary',
+
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
+
 ]
 
 MIDDLEWARE = [
@@ -58,6 +78,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'store.urls'
 AUTH_USER_MODEL ='main.User'
+AUTH_TRANSPORT_MODEL ='main.Transport'
+
 ACCOUNT_UNIQUE_EMAIL =True
 
 
@@ -94,9 +116,15 @@ REST_FRAMEWORK = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
+
+            
+        
+        
+    
+
         'NAME':'store',
         'USER':'moringa',
-        'PASSWORD':'sieva'
+        'PASSWORD':'Felixkurgat5'
     }
 }
 
