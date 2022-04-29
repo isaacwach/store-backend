@@ -13,11 +13,9 @@ from django.dispatch import receiver
 # Create your models here.
 class Client(models.Model):
     user =models.OneToOneField(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name='client')
-    username =models.CharField(max_length=50)
-    fullname =models.CharField(max_length=100)
-    email =models.EmailField(max_length=100)
-    password =models.CharField(max_length=50)
-    phone_number = PhoneField(max_length=15, blank=True)
+    username =models.CharField(max_length=50,blank=True,null=True)
+    email =models.EmailField(max_length=100,blank=True,null=True)
+  
 
     def __str__(self):
         return self.username

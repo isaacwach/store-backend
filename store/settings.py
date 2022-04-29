@@ -13,18 +13,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 
-import django_heroku
-import dj_database_url
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
+
 # from decouple import config,Csv
-cloudinary.config( 
-  cloud_name = "drlarkhla", 
-  api_key = "361286985462635", 
-  api_secret = "EwIXx2yhzxXTdIXClBjMCbp1CPg" ,
-  secure = True
-)
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -53,17 +44,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    
-    'bootstrap4',
-    'cloudinary',
-
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_auth',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
     
 
 ]
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -73,7 +65,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware'
 
 ]
 
@@ -96,7 +88,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.media',
+                'django.template.context_processors.media'
             ],
         },
     },
@@ -117,12 +109,6 @@ REST_FRAMEWORK = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-
-            
-        
-        
-    
-
         'NAME':'store',
         'USER':'moringa',
         'PASSWORD':'Felixkurgat5'
