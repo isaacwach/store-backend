@@ -1,5 +1,3 @@
-
-
 from rest_framework import serializers
 from main.models import Admin,Client,Storage, User
 
@@ -9,9 +7,6 @@ class StorageSerializer(serializers.ModelSerializer):
         fields =['id','description','size','price','status','categories']
 
         
-
-
-
 from rest_framework import serializers
 
 class UserSerializer(serializers.ModelSerializer):
@@ -35,7 +30,7 @@ class AdminSignupSerializer(serializers.ModelSerializer):
         # password2 =self.validated_data['password2']
         # if password != password2:
         #     raise serializers.ValidationError({"error":"passwords did not match"})
-        # user.set_password(password)
+        user.set_password('password')
         user.is_admin = True
         user.save()
         Admin.objects.create(user=user)
