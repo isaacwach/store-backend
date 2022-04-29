@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
@@ -8,10 +7,10 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import  Admin,Client,Storage
-from .serializers import AdminSignupSerializer,ClientSignupSerializer,StorageSerializer, UserSerializer
+from .serializer import AdminSignupSerializer,ClientSignupSerializer,StorageSerializer, UserSerializer,BookingSerializer,TransportSerializer
 from rest_framework import status,generics 
 from .permissions import IsAdminOrReadOnly,isAdminUser,isClientUser
-from main import serializers
+from main import serializer
 
 from main import permissions
 
@@ -123,7 +122,6 @@ class ClientOnlyView(generics.GenericAPIView):
 
     def get_object(self):
         return self.request.user      
-=======
 from django.shortcuts import render
 from django.shortcuts import render,redirect,HttpResponseRedirect
 from .models import Booking,Transport
@@ -177,5 +175,4 @@ class ListTransportleView(APIView):
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
->>>>>>> cbe91937673bf307baf1d65ed073d8b293cc7bb7
 
