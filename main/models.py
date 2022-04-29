@@ -1,4 +1,5 @@
 
+
 from django.db import models
 from phone_field import PhoneField
 from django.contrib.auth.models import AbstractUser
@@ -11,7 +12,8 @@ from django.dispatch import receiver
 
 class User(AbstractUser):
     is_admin =models.BooleanField(default=False)
-    is_client =models.BooleanField(default=False)  
+    is_client =models.BooleanField(default=False)
+    
 
     def __str__(self):
         return self.username
@@ -24,9 +26,8 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 
 class Admin(models.Model):
     user =models.OneToOneField(User, on_delete=models.CASCADE,related_name='employee')
-    username =models.CharField(max_length=50)
-    email =models.EmailField(max_length=100)
-    password =models.CharField(max_length=50)
+    username =models.CharField(max_length=50,blank=True,null=True)
+    email =models.EmailField(max_length=100,blank=True,null=True)
 
     def __str__(self):
         return self.username
@@ -34,11 +35,10 @@ class Admin(models.Model):
 
 class Client(models.Model):
     user =models.OneToOneField(User, on_delete=models.CASCADE,related_name='client')
-    username =models.CharField(max_length=50)
-    fullname =models.CharField(max_length=100)
-    email =models.EmailField(max_length=100)
-    password =models.CharField(max_length=50)
-    phone_number = PhoneField(max_length=15, blank=True)
+    username =models.CharField(max_length=50,blank=True,null=True)
+    fullname =models.CharField(max_length=100,blank=True,null=True)
+    email =models.EmailField(max_length=100,blank=True,null=True)
+    phone_number = PhoneField(max_length=15, blank=True,null=True)
 
     def __str__(self):
         return self.username
@@ -46,14 +46,18 @@ class Client(models.Model):
 
 
 class Storage(models.Model):
-    descrption =models.TextField(max_length=200)
+
+    description =models.TextField(max_length=200)
     size =models.IntegerField(blank=True,default='0')
     price =models.FloatField(default=0, blank=True)
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='images/',default='images/image1.jpg')
+
     status =models.CharField(max_length=40)
     categories =models.CharField(max_length=50)
     
     def __str__(self):
-        return self.size
+
+        return self.categories
+      
 
     
