@@ -1,9 +1,7 @@
 
-<<<<<<< HEAD
-=======
+
 from django.contrib.auth.models import User
-from cloudinary.models import CloudinaryField
->>>>>>> cbe91937673bf307baf1d65ed073d8b293cc7bb7
+
 
 from django.db import models
 from phone_field import PhoneField
@@ -23,16 +21,22 @@ class Client(models.Model):
 
     def __str__(self):
         return self.username
+
 class Storage(models.Model):
-    descrption =models.TextField(max_length=200)
+
+    description =models.TextField(max_length=200)
     size =models.IntegerField(blank=True,default='0')
     price =models.FloatField(default=0, blank=True)
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='images/',default='images/image1.jpg')
+
     status =models.CharField(max_length=40)
     categories =models.CharField(max_length=50)
     
     def __str__(self):
-        return self.size
+
+        return self.categories
+      
+
 class Transport(models.Model):
     destination = models.CharField(max_length=100)
     delivery_fee = models.IntegerField()
@@ -50,6 +54,7 @@ class Transport(models.Model):
 
     def __str__(self):
      return self.client_name
+
 class Booking(models.Model):
     types_of_goods = models.CharField(max_length=100)
     start_date = models.DateTimeField(auto_now_add=True)
@@ -89,37 +94,8 @@ class Admin(models.Model):
         return self.username
 
 
-<<<<<<< HEAD
-class Client(models.Model):
-    user =models.OneToOneField(User, on_delete=models.CASCADE,related_name='client')
-    username =models.CharField(max_length=50,blank=True,null=True)
-    fullname =models.CharField(max_length=100,blank=True,null=True)
-    email =models.EmailField(max_length=100,blank=True,null=True)
-    phone_number = PhoneField(max_length=15, blank=True,null=True)
-=======
->>>>>>> cbe91937673bf307baf1d65ed073d8b293cc7bb7
 
 
 
 
-<<<<<<< HEAD
-class Storage(models.Model):
-
-    description =models.TextField(max_length=200)
-    size =models.IntegerField(blank=True,default='0')
-    price =models.FloatField(default=0, blank=True)
-    image = models.ImageField(upload_to='images/',default='images/image1.jpg')
-
-    status =models.CharField(max_length=40)
-    categories =models.CharField(max_length=50)
-    
-    def __str__(self):
-
-        return self.categories
-      
-=======
-
-
-    
->>>>>>> cbe91937673bf307baf1d65ed073d8b293cc7bb7
 
