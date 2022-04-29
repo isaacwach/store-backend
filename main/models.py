@@ -37,7 +37,7 @@ class Transport(models.Model):
     destination_address = models.CharField(max_length=200)
     description = models.TextField(max_length=200)
     request_date = models.DateTimeField(auto_now_add=True)
-    delivery_date = models.DateTimeField(auto_now_add=True)
+    delivery_date = models.DateTimeField()
     phone_no = models.IntegerField()
     client = models.ForeignKey(Client,on_delete=models.CASCADE, null=True, related_name='mainclient')
     storage = models.ForeignKey(Storage,on_delete=models.CASCADE, null=True, related_name='storage')
