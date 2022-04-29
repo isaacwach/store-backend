@@ -1,4 +1,5 @@
 
+from email.policy import default
 from django.db import models
 from phone_field import PhoneField
 from django.contrib.auth.models import AbstractUser
@@ -48,7 +49,7 @@ class Storage(models.Model):
     description =models.TextField(max_length=200)
     size =models.IntegerField(blank=True,default='0')
     price =models.FloatField(default=0, blank=True)
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='images/',default='images/image1.jpg')
     status =models.CharField(max_length=40)
     categories =models.CharField(max_length=50)
     
