@@ -64,6 +64,6 @@ class ClientSignupSerializer(serializers.ModelSerializer):
         #     raise serializers.ValidationError({"error":"passwords did not match"})
         user.set_password('pasword')
         user.is_client = True
-       
+        user.save()
         Client.objects.create(user=user)
         return user
