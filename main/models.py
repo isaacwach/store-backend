@@ -48,7 +48,7 @@ class Transport(models.Model):
     phone_no = models.IntegerField()
     client = models.ForeignKey(Client,on_delete=models.CASCADE, null=True, related_name='mainclient')
     storage = models.ForeignKey(Storage,on_delete=models.CASCADE, null=True, related_name='storage')
-    located = models.CharField(max_length=100)
+    pickup_location = models.CharField(max_length=100)
 
 
 
@@ -58,10 +58,12 @@ class Transport(models.Model):
 class Booking(models.Model):
     types_of_goods = models.CharField(max_length=100)
     start_date = models.DateTimeField(auto_now_add=True)
-    exit_date  = models.DateTimeField(auto_now_add=True)
+    exit_date  = models.DateTimeField()
     client = models.ForeignKey(Client,on_delete=models.CASCADE, null=True, related_name='client')
     storage = models.ForeignKey(Storage,on_delete=models.CASCADE, null=True, related_name='mainstorage')
     transport = models.ForeignKey(Transport,on_delete=models.CASCADE, null=True, related_name='maintransport')
+    description= models.TextField()
+    client_name = models.CharField(max_length=100)
 
 
     def __str__(self):
