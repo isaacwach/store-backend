@@ -7,6 +7,7 @@ from django.db import models
 from phone_field import PhoneField
 from django.contrib.auth.models import AbstractUser
 from rest_framework.authtoken.models import Token
+from cloudinary.models import CloudinaryField
 from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -27,7 +28,7 @@ class Storage(models.Model):
     description =models.TextField(max_length=200)
     size =models.IntegerField(blank=True,default='0')
     price =models.FloatField(default=0, blank=True)
-    image = models.ImageField(upload_to='images/',default='images/image1.jpg')
+    image = CloudinaryField('image',blank=True)
 
     status =models.CharField(max_length=40)
     categories =models.CharField(max_length=50)
@@ -64,6 +65,7 @@ class Booking(models.Model):
     transport = models.ForeignKey(Transport,on_delete=models.CASCADE, null=True, related_name='maintransport')
     description= models.TextField()
     client_name = models.CharField(max_length=100)
+    price = models.FloatField()
 
 
     def __str__(self):
