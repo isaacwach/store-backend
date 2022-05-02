@@ -87,7 +87,7 @@ MIDDLEWARE = [
    
 
 ]
-CORS_ALLOWED_ORIGINS = ['*']
+CORS_ALLOWED_ORIGINS = ['https://*']
 CORS_URLS_REGEX = r"^/api/.*$"
 
 CORS_ALLOW_METHODS = [
