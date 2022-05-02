@@ -5,7 +5,7 @@ from main.models import Admin,Client,Storage, User,Booking, Transport
 class BookingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
-        
+        fields = ("types_of_goods", "start_date", "exit_date","description","client_name","price")
 
 class TransportSerializer(serializers.ModelSerializer):
     class Meta:
