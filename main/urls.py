@@ -16,6 +16,7 @@ urlpatterns=[
     re_path(r'api/unit/unit-id/(?P<pk>[0-9]+)/$',views.StorageDescription.as_view()),
     path('api/booking/', ListBookingView.as_view(), name="booking-all"),
     path('api/transport/', ListTransportleView.as_view(), name="transport-all"),
+    # path('rest-auth/', include('rest_auth.urls'))
   
     
 ]
