@@ -87,7 +87,7 @@ MIDDLEWARE = [
    
 
 ]
-CORS_ALLOWED_ORIGINS = ['https://*']
+CORS_ALLOWED_ORIGINS = ['https://*,http://localhost:3000/']
 CORS_URLS_REGEX = r"^/api/.*$"
 
 CORS_ALLOW_METHODS = [
