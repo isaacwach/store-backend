@@ -28,7 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('main.urls')),
     re_path(r'^api-token-auth/', obtain_auth_token),
-    path('rest-auth/', include('rest_auth.urls'))
+    # path('rest-auth/', include('rest_auth.urls'))
 
     
 ]
