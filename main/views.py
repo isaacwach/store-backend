@@ -51,7 +51,7 @@ class ClientSignup(generics.GenericAPIView):
         })   
             
 class StorageApiView(APIView):
-    permission_classes = (IsAdminOrReadOnly,)
+    # permission_classes = (IsAdminOrReadOnly,)
     def get(self,request,format=None):
         all_storage =Storage.objects.all()
         serializers =StorageSerializer(all_storage, many=True)
@@ -65,7 +65,7 @@ class StorageApiView(APIView):
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)    
     
 class StorageDescription(APIView):
-    permission_classes = (IsAdminOrReadOnly,)
+    # permission_classes = (IsAdminOrReadOnly,)
     def get_storage(self, pk):
         try:
             return Storage.objects.get(pk=pk)
@@ -152,7 +152,7 @@ class ListBookingView(APIView):
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class ListTransportleView(APIView):
+class ListTransportView(APIView):
     """
     Provides a get method handler.
     """

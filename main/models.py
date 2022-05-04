@@ -7,6 +7,7 @@ from django.db import models
 from phone_field import PhoneField
 from django.contrib.auth.models import AbstractUser
 from rest_framework.authtoken.models import Token
+from cloudinary.models import CloudinaryField
 from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -27,7 +28,7 @@ class Storage(models.Model):
     description =models.TextField(max_length=200)
     size =models.IntegerField(blank=True,default='0')
     price =models.FloatField(default=0, blank=True)
-    image = models.ImageField(upload_to='images/',default='images/image1.jpg')
+    image = CloudinaryField('image',blank=True)
 
     status =models.CharField(max_length=40)
     categories =models.CharField(max_length=50)
@@ -43,12 +44,12 @@ class Transport(models.Model):
     client_name = models.CharField(max_length=100)
     destination_address = models.CharField(max_length=200)
     description = models.TextField(max_length=200)
-    request_date = models.DateTimeField(auto_now_add=True)
-    delivery_date = models.DateTimeField()
+    request_date = models.DateField(auto_now_add=True)
+    delivery_date = models.DateField()
     phone_no = models.IntegerField()
     client = models.ForeignKey(Client,on_delete=models.CASCADE, null=True, related_name='mainclient')
     storage = models.ForeignKey(Storage,on_delete=models.CASCADE, null=True, related_name='storage')
-    located = models.CharField(max_length=100)
+    pickup_location = models.CharField(max_length=100)
 
 
 
@@ -57,11 +58,14 @@ class Transport(models.Model):
 
 class Booking(models.Model):
     types_of_goods = models.CharField(max_length=100)
-    start_date = models.DateTimeField(auto_now_add=True)
-    exit_date  = models.DateTimeField(auto_now_add=True)
+    start_date = models.DateField()
+    exit_date  = models.DateField()
     client = models.ForeignKey(Client,on_delete=models.CASCADE, null=True, related_name='client')
     storage = models.ForeignKey(Storage,on_delete=models.CASCADE, null=True, related_name='mainstorage')
     transport = models.ForeignKey(Transport,on_delete=models.CASCADE, null=True, related_name='maintransport')
+    description= models.TextField(default="desc")
+    client_name = models.CharField(max_length=100,blank=True)
+    price = models.FloatField(blank=True )
 
 
     def __str__(self):
