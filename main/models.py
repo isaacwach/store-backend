@@ -16,13 +16,10 @@ class Client(models.Model):
     location=models.CharField(max_length=80,blank=True,null=True)
     street =models.CharField(max_length=100,blank=True,null=True)
     city =models.CharField(max_length=100,blank=True,null=True)
-  
-
     def __str__(self):
          return str(self.user.username)
 
 class Storage(models.Model):
-
     description =models.TextField(max_length=200)
     size =models.IntegerField(blank=True,default='0')
     price =models.FloatField(default=0, blank=True)
@@ -47,9 +44,6 @@ class Transport(models.Model):
     client = models.ForeignKey(Client,on_delete=models.CASCADE, null=True, related_name='mainclient')
     storage = models.ForeignKey(Storage,on_delete=models.CASCADE, null=True, related_name='storage')
     located = models.CharField(max_length=100)
-
-
-
     def __str__(self):
      return self.client_name
 
@@ -60,8 +54,6 @@ class Booking(models.Model):
     client = models.ForeignKey(Client,on_delete=models.CASCADE, null=True, related_name='client')
     storage = models.ForeignKey(Storage,on_delete=models.CASCADE, null=True, related_name='mainstorage')
     transport = models.ForeignKey(Transport,on_delete=models.CASCADE, null=True, related_name='maintransport')
-
-
     def __str__(self):
      return self.types_of_goods
 
@@ -72,8 +64,6 @@ class Booking(models.Model):
 class User(AbstractUser):
     is_admin =models.BooleanField(default=False)
     is_client =models.BooleanField(default=False)
-    
-
     def __str__(self):
         return self.username
 
