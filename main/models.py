@@ -13,12 +13,13 @@ from django.dispatch import receiver
 # Create your models here.
 class Client(models.Model):
     user =models.OneToOneField(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name='client')
-    username =models.CharField(max_length=50,blank=True,null=True)
-    email =models.EmailField(max_length=100,blank=True,null=True)
+    location=models.CharField(max_length=80,blank=True,null=True)
+    street =models.CharField(max_length=100,blank=True,null=True)
+    city =models.CharField(max_length=100,blank=True,null=True)
   
 
     def __str__(self):
-        return self.username
+         return str(self.user.username)
 
 class Storage(models.Model):
 
@@ -26,7 +27,6 @@ class Storage(models.Model):
     size =models.IntegerField(blank=True,default='0')
     price =models.FloatField(default=0, blank=True)
     image = models.ImageField(upload_to='images/',default='images/image1.jpg')
-
     status =models.CharField(max_length=40)
     categories =models.CharField(max_length=50)
     
@@ -85,11 +85,12 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 
 class Admin(models.Model):
     user =models.OneToOneField(User, on_delete=models.CASCADE,related_name='employee')
-    username =models.CharField(max_length=50,blank=True,null=True)
-    email =models.EmailField(max_length=100,blank=True,null=True)
-
+    location=models.CharField(max_length=80,blank=True,null=True)
+    street =models.CharField(max_length=100,blank=True,null=True)
+    city =models.CharField(max_length=100,blank=True,null=True)
+  
     def __str__(self):
-        return self.username
+        return str(self.user.username)
 
 
 
