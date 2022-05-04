@@ -9,19 +9,21 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import  Admin,Client,Storage
 from .serializers import AdminSignupSerializer,ClientSignupSerializer,StorageSerializer, UserSerializer
-from rest_framework import status,generics 
+from rest_framework import status,generics,permissions
 from .permissions import IsAdminOrReadOnly,isAdminUser,isClientUser
 from main import serializers
 
-from main import permissions
+
 
 from .models import Booking,Transport
 from rest_framework.response import Response
 from .serializer import BookingSerializer,TransportSerializer
 
-from rest_framework import generics
-from .models import Booking,Transport
+
 from rest_framework import status
+
+
+
 # from .forms import 
 
 
@@ -34,7 +36,6 @@ class AdminSignup(generics.GenericAPIView):
         serializer=self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user=serializer.save()
-
         return Response ({
             "user":UserSerializer(user,context=self.get_serializer_context()).data,
             "token":Token.objects.get(user=user).key,
@@ -58,7 +59,7 @@ class ClientSignup(generics.GenericAPIView):
         })   
             
 class StorageApiView(APIView):
-    permission_classes = (IsAdminOrReadOnly,)
+    # permission_classes = (IsAdminOrReadOnly,)
     def get(self,request,format=None):
         all_storage =Storage.objects.all()
         serializers =StorageSerializer(all_storage, many=True)
@@ -72,7 +73,7 @@ class StorageApiView(APIView):
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)    
     
 class StorageDescription(APIView):
-    permission_classes = (IsAdminOrReadOnly,)
+    # permission_classes = (IsAdminOrReadOnly,)
     def get_storage(self, pk):
         try:
             return Storage.objects.get(pk=pk)
@@ -105,7 +106,6 @@ class CustomAuthToken(ObtainAuthToken):
         serializer = self.serializer_class(data=request.data,context={'request':request})
         serializer.is_valid(raise_exception=True)
         user=serializer.validated_data['user']
-
         token, created=Token.objects.get_or_create(user=user)
         return Response({
              'token': token.key,
@@ -113,6 +113,8 @@ class CustomAuthToken(ObtainAuthToken):
              'is_admin':user.is_admin,
              'is_client':user.is_client
         })
+
+
     
 class Logout(APIView):
     def post (self,request,format=None):
@@ -120,7 +122,7 @@ class Logout(APIView):
         return  Response(status=status.HTTP_200_OK)
 
 class AdminOnlyView(generics.GenericAPIView):
-    permission_class =[permissions.isAdminUser]  
+    permission_class =[permissions.IsAuthenticated&isAdminUser]  
     serializer_class =UserSerializer
 
     def get_object(self):
@@ -128,7 +130,7 @@ class AdminOnlyView(generics.GenericAPIView):
 
 
 class ClientOnlyView(generics.GenericAPIView):
-    permission_class =[permissions.isClientUser]  
+    permission_class =[permissions.IsAuthenticated&isClientUser]  
     serializer_class =UserSerializer
 
     def get_object(self):
