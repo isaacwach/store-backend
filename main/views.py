@@ -159,7 +159,7 @@ class ListBookingView(APIView):
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class ListTransportleView(APIView):
+class ListTransportView(APIView):
     """
     Provides a get method handler.
     """
