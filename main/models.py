@@ -64,8 +64,8 @@ class Booking(models.Model):
     storage = models.ForeignKey(Storage,on_delete=models.CASCADE, null=True, related_name='mainstorage')
     transport = models.ForeignKey(Transport,on_delete=models.CASCADE, null=True, related_name='maintransport')
     description= models.TextField(default="desc")
-    client_name = models.CharField(max_length=100,default="moringa")
-    price = models.FloatField(blank=True,null=True)
+    client_name = models.CharField(max_length=100,blank=True)
+    price = models.FloatField(blank=True )
 
 
     def __str__(self):
