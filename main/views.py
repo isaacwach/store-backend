@@ -11,10 +11,24 @@ from .serializer import AdminSignupSerializer,ClientSignupSerializer,StorageSeri
 from rest_framework import status,generics,permissions 
 from .permissions import IsAdminOrReadOnly,isAdminUser,isClientUser
 from main import serializer
+from .models import Booking,Transport
+from .serializer import BookingSerializer,TransportSerializer
+from rest_framework import status
+# from .forms import 
 
-# from main import permissions
 
 # Create your views here.
+# from django.shortcuts import render,redirect,HttpResponseRedirect
+
+# from rest_framework.response import Response
+# from .serializer import BookingSerializer,TransportSerializer
+# from rest_framework.views import APIView
+
+
+# from rest_framework import status
+# # from .forms import 
+# from django.contrib.auth.decorators import login_required
+# from django.urls import reverse
 
 
 class AdminSignup(generics.GenericAPIView):
@@ -120,18 +134,10 @@ class ClientOnlyView(generics.GenericAPIView):
     serializer_class =UserSerializer
     def get_object(self):
         return self.request.user    
-from django.shortcuts import render
-from django.shortcuts import render,redirect,HttpResponseRedirect
-from .models import Booking,Transport
-from rest_framework.response import Response
-from .serializer import BookingSerializer,TransportSerializer
-from rest_framework.views import APIView
-from rest_framework import generics
-from .models import Booking,Transport
-from rest_framework import status
-# from .forms import 
-from django.contrib.auth.decorators import login_required
-from django.urls import reverse
+
+
+             
+
 # Create your views here.
 
 # def new_book(request):
