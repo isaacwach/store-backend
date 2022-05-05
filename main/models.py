@@ -14,14 +14,11 @@ from django.dispatch import receiver
 # Create your models here.
 class Client(models.Model):
     user =models.OneToOneField(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name='client')
-    username =models.CharField(max_length=50,default='felo')
-    
-    email =models.EmailField(max_length=100,default='kurgatfelo@gmail.com')
-   
-    
-
+    location=models.CharField(max_length=80,blank=True,null=True)
+    street =models.CharField(max_length=100,blank=True,null=True)
+    city =models.CharField(max_length=100,blank=True,null=True)
     def __str__(self):
-        return self.username
+         return str(self.user.username)
 
 class Storage(models.Model):
 
@@ -65,7 +62,7 @@ class Booking(models.Model):
     transport = models.ForeignKey(Transport,on_delete=models.CASCADE, null=True, related_name='maintransport')
     description= models.TextField(default="desc")
     client_name = models.CharField(max_length=100,blank=True)
-    price = models.FloatField(blank=True )
+    price = models.FloatField(blank=True, default=0)
 
 
     def __str__(self):
@@ -91,11 +88,11 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 
 class Admin(models.Model):
     user =models.OneToOneField(User, on_delete=models.CASCADE,related_name='employee')
-    username =models.CharField(max_length=50,blank=True,null=True)
-    email =models.EmailField(max_length=100,blank=True,null=True)
-
+    location=models.CharField(max_length=80,blank=True,null=True)
+    street =models.CharField(max_length=100,blank=True,null=True)
+    city =models.CharField(max_length=100,blank=True,null=True)
     def __str__(self):
-        return self.username
+        return str(self.user.username)
 
 
 

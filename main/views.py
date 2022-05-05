@@ -8,11 +8,11 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import  Admin,Client,Storage
 from .serializer import AdminSignupSerializer,ClientSignupSerializer,StorageSerializer, UserSerializer,BookingSerializer,TransportSerializer
-from rest_framework import status,generics 
+from rest_framework import status,generics,permissions 
 from .permissions import IsAdminOrReadOnly,isAdminUser,isClientUser
 from main import serializer
 
-from main import permissions
+# from main import permissions
 
 # Create your views here.
 
@@ -109,19 +109,17 @@ class Logout(APIView):
         return  Response(status=status.HTTP_200_OK)
 
 class AdminOnlyView(generics.GenericAPIView):
-    permission_class =[permissions.isAdminUser]  
+    permission_class =[permissions.IsAuthenticated&isAdminUser]
     serializer_class =UserSerializer
-
     def get_object(self):
-        return self.request.user   
+        return self.request.user  
 
 
 class ClientOnlyView(generics.GenericAPIView):
-    permission_class =[permissions.isClientUser]  
+    permission_class =[permissions.IsAuthenticated&isClientUser]
     serializer_class =UserSerializer
-
     def get_object(self):
-        return self.request.user      
+        return self.request.user    
 from django.shortcuts import render
 from django.shortcuts import render,redirect,HttpResponseRedirect
 from .models import Booking,Transport
